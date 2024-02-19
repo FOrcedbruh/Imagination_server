@@ -9,6 +9,7 @@ router.post('/login', authController.login);
 router.post('/getNotes', authController.getNotes);
 router.post('/createNote', authController.createNote);
 router.post('/decodeToken', authController.decodeToken);
+router.post('/createAvatar', authController.createAvatar);
 
 module.exports = router;
 

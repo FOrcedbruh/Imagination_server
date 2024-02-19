@@ -19,7 +19,6 @@ const User = Schema({
     },
     avatar: {
         type: String,
-        required: false
     }
 })
 

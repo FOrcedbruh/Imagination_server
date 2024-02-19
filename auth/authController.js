@@ -90,6 +90,18 @@ class authController {
             console.log('error', e)
         }
     }
+    async createAvatar(req, res)  {
+        const { preview, username } = req.body;
+
+        try {
+            await User.updateOne({username} , {$set: {avatar: preview}});
+        } catch(error) {
+            console.log(error);
+        }
+        
+
+        res.json({message: 'Avatar has been successfully added'});
+    }
     async createNote(req, res) {
         const {text, title, username} = req.body;
         const note = new Note({
