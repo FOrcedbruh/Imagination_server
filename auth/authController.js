@@ -112,6 +112,17 @@ class authController {
         note.save();
         return res.json({message: 'Note successfully created '})
     }
+    async deleteImagination(req, res) {
+        const {  _id  } = req.body;
+
+        try {
+            await Note.deleteOne({_id});
+        } catch(error) {
+            return res.status(400).json({message: 'Ошибка удаления'})
+        }
+
+        return res.json({messgae: 'Успешно удалено'});
+    }
     async getNotes(req, res) {
         const {username} = req.body;
 
@@ -119,9 +130,9 @@ class authController {
 
         const filteredNotes = await allNotes.filter(note => note.user == username);
 
-        res.json({
+        res.json(
             filteredNotes
-        })
+        )
     }
 }
 

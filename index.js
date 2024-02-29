@@ -39,7 +39,7 @@ app.post('/getUser', async ( req, res) => {
     const currentUser = await users.filter(user => user.username == username);
     
     res.json(currentUser);
-})
+});
 
 
 
