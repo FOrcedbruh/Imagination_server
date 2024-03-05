@@ -4,6 +4,7 @@ const mongoose =  require('mongoose');
 const authRouter = require('./auth/authRouter');
 const cors = require('cors');
 const User = require('./models/User');
+const Note = require('./models/Note');
 
 dotenv.config();
 
@@ -29,6 +30,19 @@ app.get('/', (req, res) => {
     });
 })
 
+app.post('/editNote', async (req, res) => {
+    const {_id, text, title} = req.body;
+
+    try {
+        await Note.updateOne({_id}, { $set: {text: text, title: title}});
+    }
+    catch (error) {
+        console.error(error);
+        return res.json({message: 'Error, try it another time'});
+    }
+
+    return res.json({message: 'Successfully updated'})
+})
 
 
 app.post('/getUser', async ( req, res) => {
@@ -40,6 +54,7 @@ app.post('/getUser', async ( req, res) => {
     
     res.json(currentUser);
 });
+
 
 
 
